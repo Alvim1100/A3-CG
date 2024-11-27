@@ -19,7 +19,6 @@ display = pg.display.set_mode(screen, DOUBLEBUF|OPENGL)
 
 def initialise():
     glClearColor(0.5, 0.5, 0.5, 1.0)
-    # projection
     glMatrixMode(GL_PROJECTION)
     glMatrixMode(GL_MODELVIEW)
     glLoadIdentity()
@@ -30,7 +29,6 @@ def initialise():
     glEnable(GL_LIGHTING)
     glEnable(GL_LIGHT0)  # Habilitar uma fonte de luz
     glEnable(GL_DEPTH_TEST)  # Ativar teste de profundidade
-    #glEnable(GL_NORMALIZE)
 
     # Configuração da luz
     light_position = [5.0, 0.0, 10.0, 1.0]
@@ -79,6 +77,15 @@ while running:
         glRotatef(-2, 2, 0, 0)
     if keys[K_s]:
         glRotatef(2, 2, 0, 0)
+
+    if keys[K_LEFT]:
+        glTranslate(-2, 0, 0)
+    if keys[K_RIGHT]:
+        glTranslate(2, 0, 0)
+    if keys[K_UP]:
+        glTranslate(0, 0, 2)
+    if keys[K_DOWN]:
+        glTranslate(0, 0, -2)
 
     display()
     ChairMesh()

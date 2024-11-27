@@ -4,7 +4,7 @@ from OpenGL.GLU import *
 from numpy import cross
 from numpy.linalg import norm
 
-# Função para calcular normais de uma face
+
 def calculate_normal(v1, v2, v3):
     u = [v2[i] - v1[i] for i in range(3)]
     v = [v3[i] - v1[i] for i in range(3)]
@@ -15,7 +15,7 @@ def calculate_normal(v1, v2, v3):
     return [normal[i] / magnitude for i in range(3)]
 
 def ChairMesh():
-    material_diffuse = [0.3, 0.3, 0.3, 1.0]  # Cor difusa (cinza escuro)
+    material_diffuse = [[0.0, 0.0, 1.0, 1.0]]  # Cor difusa (cinza escuro)
     material_ambient = [0.4, 0.4, 0.4, 1.0]  # Cor ambiente mais forte
     material_specular = [1.0, 1.0, 1.0, 1.0]  # Reflexo especular
     material_shininess = 32.0  # Brilho moderado
