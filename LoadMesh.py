@@ -1,6 +1,5 @@
 from model import *
 from OpenGL.GL import *
-from OpenGL.GLU import *
 from numpy import cross
 from numpy.linalg import norm
 
@@ -15,11 +14,13 @@ def calculate_normal(v1, v2, v3):
     return [normal[i] / magnitude for i in range(3)]
 
 def ChairMesh():
-    material_diffuse = [[0.0, 0.0, 1.0, 1.0]]  # Cor difusa (cinza escuro)
-    material_ambient = [0.4, 0.4, 0.4, 1.0]  # Cor ambiente mais forte
-    material_specular = [1.0, 1.0, 1.0, 1.0]  # Reflexo especular
-    material_shininess = 32.0  # Brilho moderado
+    material_diffuse = [0.19125, 0.0735, 0.0225, 1.0]
+    material_ambient = [0.4, 0.4, 0.4, 1.0]
+    material_specular = [1.0, 1.0, 1.0, 1.0]
+    material_shininess = 32.0
+    material_emission = [0.1, 0.1, 0.1, 1.0]
 
+    glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, material_emission)
     glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, material_diffuse)
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, material_ambient)
     glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, material_specular)
@@ -39,15 +40,5 @@ def ChairMesh():
         x = 0
         for vertex in face:
             x += 1
-            glColor3fv(colors[x])  # Define a cor do vértice
             glVertex3fv(chair_verticies_vector3[vertex])
     glEnd()
-
-
-#comentei as linhas para tentar deixar o modelo mais bonito
-    # Desenhar as arestas (wireframe)
-    #glBegin(GL_LINES)
-    #for edge in chair_edges_vector2:
-        #for vertex in edge:
-            #glVertex3fv(chair_verticies_vector3[vertex])
-    #glEnd()
